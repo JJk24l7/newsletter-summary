@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+</head>
+<body>
+    <div class="form-container">
+        <h1>회원가입</h1>
+        <form method="POST">
+            <label for="email">이메일:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password">비밀번호:</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">가입하기</button>
+        </form>
+        <p>이미 계정이 있으신가요? <a href="{{ url_for('login') }}">로그인</a></p>
+    </div>
+
+    <div class="navigation-bar">
+        <a href="/">
+            <span class="material-symbols-outlined">home</span>
+             <p>홈</p>
+         </a>
+        <a href="/search">
+            <span class="material-symbols-outlined">quick_reference_all</span>
+            <p>전체기사</p>
+        </a>
+        <a href="/my_bookmarks">
+            <span class="material-icons">favorite</span>
+            <p>즐겨찾기</p>
+        </a>
+        <!-- Flask 예시 -->
+        {% if session.logged_in %}
+        <a href="/logout">
+            <span class="material-icons">logout</span>
+            <p>로그아웃</p>
+        </a>
+        {% else %}
+        <a href="/login">
+            <span class="material-icons">person</span>
+            <p>로그인</p>
+        </a>
+        {% endif %}
+
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>북마크한 뉴스</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/saved_articles.css') }}">
+</head>
+<body>
+    <h1>북마크한 뉴스</h1>
+
+    <div class="articles-container">
+        {% if news_list %}
+            {% for news in news_list %}
+                <div class="article-card">
+                    <h3>{{ news.title }}</h3>
+                    <p><strong>날짜:</strong> {{ news.date }}</p>
+                    <p><strong>출처:</strong> {{ news.company }}</p>
+                    <p><strong>키워드:</strong> {{ news.keyword }}</p>
+                    <img class="wordcloud_images" src="{{ url_for('static', filename='wordcloud_images/' + news.wordcloud_image) }}" alt="Word Cloud">
+                    <a href="{{ news.url }}" target="_blank">원문 기사 보기</a>
+
+                    <!-- 북마크 버튼 -->
+                    <form action="{{ url_for('bookmark', news_id=news.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="bookmark-button {% if news.id in bookmarked_news_ids %}hearted{% endif %}">
+                            ❤️   
+                        </button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>저장한 뉴스가 없습니다.</p>
+        {% endif %}
+    </div>
+    <div class="navigation-bar">
+        <a href="/">
+             <span class="material-symbols-outlined">home</span>
+            <p>홈</p>
+        </a>
+        <a href="/search">
+            <span class="material-symbols-outlined">quick_reference_all</span>
+            <p>전체기사</p>
+        </a>
+        <a href="/my_bookmarks">
+            <span class="material-icons">favorite</span>
+            <p>즐겨찾기</p>
+        </a>
+            <!-- Flask 예시 -->
+            {% if session.logged_in %}
+            <a href="/logout">
+                <span class="material-icons">logout</span>
+                <p>로그아웃</p>
+            </a>
+            {% else %}
+            <a href="/login">
+                <span class="material-icons">person</span>
+                <p>로그인</p>
+            </a>
+            {% endif %}
+
+        </div>
+    
+
+    <script src="{{ url_for('static', filename='js/suggestions.js') }}"></script>
+</body>
+</html>
+
+

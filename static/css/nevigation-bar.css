@@ -1,0 +1,30 @@
+.navigation-bar {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;  /* 전체 너비로 수정 */
+  height: 3.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;  /* 둥근 모서리 제거로 하단 네비처럼 보이게 */
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);  /* 살짝 그림자 */
+  z-index: 1000;
+}
+
+.navigation-bar a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navigation-bar span {
+  font-size: 2rem;
+}
+
+.find-icon-clicked {
+  font-weight: 600;
+}

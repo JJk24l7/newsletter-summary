@@ -1,0 +1,38 @@
+
+.find-search-bar-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+  padding: 0 20px;
+}
+
+.find-search-bar-form div {
+  width: 100%;
+}
+
+.find-search-bar {
+  background-color: #98C9EA; /* 하늘색 계열 */
+  border-radius: 25px;
+  width: 100%;
+  padding: 12px 20px;
+  color: black;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.find-search-bar:focus {
+  background-color: #d6ecff; /* 더 밝은 하늘색 */
+}
+
+.find-search-bar-form span {
+  position: absolute;
+  font-size: 1.2rem;
+  bottom: 0.8rem;
+  right: 35px;
+  color: black;
+  pointer-events: none;
+}

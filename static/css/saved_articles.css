@@ -1,0 +1,156 @@
+@import "./global.css";
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;  /* 혹시 몰라서 margin도 초기화 */
+    color:black;
+
+}
+
+/* 기사 카드 스타일 */
+.articles-container {
+    display: grid; /* Grid 레이아웃 */
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 열 */
+    gap: 20px; /* 카드 사이의 간격 */
+    padding: 20px; /* 컨테이너 내부 여백 */
+    margin: 0 auto; /* 중앙 정렬 */
+    max-width: 1200px; /* 최대 넓이 제한 */
+}
+
+/* 개별 기사 카드 */
+.article-card {
+    border: 1px solid #ccc; /* 카드 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 15px; /* 카드 내부 여백 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    background-color: #fff; /* 카드 배경색 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 기사 제목 스타일 */
+.article-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+/* 기사 부가 정보 (날짜, 출처 등) */
+.article-card p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+/* 원문 기사 링크 */
+.article-card a {
+    font-size: 14px;
+    color: #007BFF; /* 파란색 */
+    text-decoration: none;
+}
+
+.article-card a:hover {
+    text-decoration: underline; /* 링크 강조 */
+}
+
+/* 워드클라우드 이미지 */
+.wordcloud_images {
+    width: 150px; /* 이미지를 더 작게 조정 */
+    height: auto; /* 비율을 유지하면서 높이 자동 조정 */
+    display: block; /* 이미지를 블록 형태로 */
+    margin: 10px auto; /* 이미지 중앙 정렬 */
+}
+
+/* 북마크 아이콘 */
+.bookmark-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+/* 북마크가 클릭되었을 때 빨간색 하트 */
+.bookmark-button.hearted {
+    color: red;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* 기사 카드 스타일 */
+.articles-container {
+    display: grid; /* Grid 레이아웃 */
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 열 */
+    gap: 20px; /* 카드 사이의 간격 */
+    padding: 20px; /* 컨테이너 내부 여백 */
+    margin: 0 auto; /* 중앙 정렬 */
+    max-width: 1200px; /* 최대 넓이 제한 */
+}
+
+/* 개별 기사 카드 */
+.article-card {
+    border: 1px solid #ccc; /* 카드 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 15px; /* 카드 내부 여백 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    background-color: #fff; /* 카드 배경색 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 기사 제목 스타일 */
+.article-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+/* 기사 부가 정보 (날짜, 출처 등) */
+.article-card p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+/* 원문 기사 링크 */
+.article-card a {
+    font-size: 14px;
+    color: #007BFF; /* 파란색 */
+    text-decoration: none;
+}
+
+.article-card a:hover {
+    text-decoration: underline; /* 링크 강조 */
+}
+
+/* 워드클라우드 이미지 */
+.wordcloud_images {
+    width: 150px; /* 이미지를 더 작게 조정 */
+    height: auto; /* 비율을 유지하면서 높이 자동 조정 */
+    display: block; /* 이미지를 블록 형태로 */
+    margin: 10px auto; /* 이미지 중앙 정렬 */
+}
+
+/* 북마크 아이콘 */
+.bookmark-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+/* 북마크가 클릭되었을 때 빨간색 하트 */
+.bookmark-button.hearted {
+    color: red;
+}

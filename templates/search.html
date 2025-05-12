@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뉴스 검색</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}" />
+</head>
+<body>
+    <!-- 검색 바 -->
+    <form class="find-search-bar-form" action="/search" method="get">
+        <div class="search-container">
+            <input type="text" id="search-input" name="keyword" class="find-search-bar"
+                   placeholder="검색어 입력" value="{{ keyword or '' }}" />
+            <ul id="suggestion-box" class="suggestions"></ul>                
+            <span class="material-icons-outlined">search</span>
+        </div>
+        {% if selected_category %}
+            <input type="hidden" name="category" value="{{ selected_category }}">
+        {% endif %}
+    </form>
+
+    
+    <!-- 카테고리 바 -->
+    <div class="category-bar">
+        <div class="category-buttons">
+            {% for category_name in ['스포츠', '연예', '경제', 'IT', '사회', '생활문화'] %}
+                <a href="{{ url_for('search', category=category_name, keyword=keyword) }}"
+                class="category-button {% if selected_category == category_name %}active{% endif %}">
+                    <div class="icon">{{ icon }}</div>
+                    <div class="label">{{ category_name }}</div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <!-- 뉴스 항목 표시 -->
+    <div class="articles-container">
+        {% if news_items %}
+            {% for news in news_items %}
+                <div class="article-card">
+                    <h3>{{ news.title }}</h3>
+                    <p><strong>날짜:</strong> {{ news.date }}</p>
+                    <p><strong>출처:</strong> {{ news.company }}</p>
+                    <p><strong>키워드:</strong> {{ news.keyword }}</p>
+                    <img class="wordcloud_images" src="{{ url_for('static', filename='wordcloud_images/' + news.wordcloud_image) }}" alt="Word Cloud">
+                    <a href="{{ news.url }}" target="_blank">원문 기사 보기</a>
+                    <form action="{{ url_for('bookmark', news_id=news.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="bookmark-button" style="background: none; border: none; font-size: 1.5rem;">
+                            {% if news.id in bookmarked_news_ids %}
+                                ❤️
+                            {% else %}
+                                🤍
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>검색 결과가 없습니다.</p>
+        {% endif %}
+    </div>
+
+    
+    <!-- 내비게이션 바 -->
+    <div class="navigation-bar">
+        <a href="/">
+            <span class="material-symbols-outlined">home</span>
+            <p>홈</p>
+        </a>
+        <a href="/search">
+            <span class="material-symbols-outlined">quick_reference_all</span>
+            <p>전체기사</p>
+        </a>
+        <a href="/my_bookmarks">
+            <span class="material-icons">favorite</span>
+            <p>즐겨찾기</p>
+        </a>
+        <!-- Flask 예시 -->
+        {% if session.logged_in %}
+        <a href="/logout">
+            <span class="material-icons">logout</span>
+            <p>로그아웃</p>
+        </a>
+        {% else %}
+        <a href="/login">
+            <span class="material-icons">person</span>
+            <p>로그인</p>
+        </a>
+        {% endif %}
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/suggestions.js') }}"></script>
+</body>
+</html>
+
+
+
+
+

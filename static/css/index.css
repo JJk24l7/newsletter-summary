@@ -1,0 +1,156 @@
+@import "./global.css";
+
+/* 종 아이콘 감싸는 줄 */
+/* 자동완성 관련 CSS */
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+#suggestion-box {
+  position: absolute;
+  background-color: #b3d9ff;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 0;
+  margin: 4px 0 0 0;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+#suggestion-box.visible {
+  display: block;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#suggestion-box li {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+#suggestion-box li:hover,
+#suggestion-box li.highlighted {
+  background-color: #f0f0f0;
+}
+
+/* 이미 있던 스타일들 */
+.notification-bar {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+
+.notification-icon {
+  font-size: 24px;
+  color: #FECA02;  /* ✅ 변경: 종 아이콘 색을 노란색으로 */
+  cursor: pointer;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-box {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 10px;
+  min-width: 150px;
+  z-index: 100;
+}
+
+.hidden {
+  display: none;
+}
+
+.best-news__img-container {
+  padding: 0 20px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+.best-news__img {
+  width: 22rem;
+  height: 12rem;
+  border-radius: 25px;
+}
+.best-news__img-container span {
+  position: absolute;
+  background-color: var(--purple);
+  border-radius: 50%;
+  left: calc(50% + 5rem);
+  font-size: 5rem;
+  bottom: 3.2rem;
+}
+.best-news__title {
+  padding-left: 25px;
+
+}
+.best-news__promotion-title {
+  font-size: 14px;
+}
+.best-news__news-name {
+  color: var(--purple);
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.news-recommendation {
+  margin: 25px 0;
+  padding: 0 25px;
+  color: black;
+}
+.news-recommendation__imges {
+  margin-top: 15px;
+  list-style: none;
+  display: flex;
+  overflow-x: auto;
+}
+.news-recommendation__imges li {
+  margin-left: 5px;
+}
+.news-recommendation__imges img {
+  width: 150px;
+  border-radius: 15px;
+}
+
+.news-list {
+  padding: 20px;
+}
+.news-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+.bookmark-icon {
+  color: red;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+
+
+

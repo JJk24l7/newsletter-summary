@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    </head>
+    <body>
+        <!-- 알림 종 아이콘 및 알림창 -->
+        <div class="notification-bar">
+            <span class="material-icons notification-icon" onclick="toggleNotifications()">notifications</span>
+            <div id="notification-list" class="notification-box hidden">
+                <p>🔔 최근 알림 없음</p>
+            </div>
+        </div>
+
+        <!-- 검색 폼 -->
+        <form id="search-form" class="find-search-bar-form" action="/search" method="get">
+            <div class="search-container">
+                <input type="text" id="search-input" name="keyword" class="find-search-bar" placeholder="검색어 입력" autocomplete="off" />
+                <ul id="suggestion-box" class="suggestions"></ul>                
+                <span class="material-icons-outlined">search</span>
+            </div>
+        </form>
+          
+          
+    
+
+        <!-- 카테고리 바 -->
+        <div class="category-bar">
+            <div class="category-buttons">
+                {% for category_name in ['스포츠', '연예', '경제', 'IT', '사회', '생활문화'] %}
+                    <a href="{{ url_for('search', category=category_name, keyword=keyword) }}"
+                    class="category-button {% if selected_category == category_name %}active{% endif %}">
+                        <div class="icon">{{ icon }}</div>
+                        <div class="label">{{ category_name }}</div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <!-- 뉴스 추천 섹션 -->
+        <!-- 뉴스 추천 섹션 -->
+        <div class="news-recommendation">
+            <span class="news-recommendation__title">다른 뉴스 보기 ></span>
+            <ul class="news-recommendation__imges">
+                <li>
+                    <a href="{{ url_for('search', keyword='작년 한국시리즈 라이벌 LG-kt, 1년 만에 리턴매치') }}">
+                        <img src="{{ url_for('static', filename='img/find-newsRecommendation-01.jpg') }}" style="width:200px; height:200px;" alt="작년 한국시리즈 라이벌 LG-kt, 1년 만에 리턴매치"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('search', keyword='KIA, 삼성 꺾고 7년 만에 통합 우승 \'V12\'…시리즈 MVP 김선빈(종합)') }}">
+                        <img src="{{ url_for('static', filename='img/find-newsRecommendation-02.jpg') }}" style="width:200px; height:200px;" alt="KIA, 삼성 꺾고 7년 만에 통합 우승 'V12'…시리즈 MVP 김선빈(종합)"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('search', keyword='선재업고튀어') }}">
+                        <img src="{{ url_for('static', filename='img/find-newsRecommendation-03.jpg') }}" style="width:200px; height:200px;" alt="'선재는 실존했다'…변우석, 마침내 선재 소환→'선업튀' 세계관 大통합"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('search', keyword='CU, 밤 티라미수 디저트 2종 누적 판매량 200만개 돌파') }}">
+                        <img src="{{ url_for('static', filename='img/find-newsRecommendation-04.png') }}" style="width:200px; height:200px;"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('search', keyword='매일유업') }}">
+                        <img src="{{ url_for('static', filename='img/find-newsRecommendation-05.png') }}" style="width:200px; height:200px;"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- 네비게이션 바 -->
+        <div class="navigation-bar">
+            <a href="/">
+                <span class="material-symbols-outlined">home</span>
+                <p>홈</p>
+            </a>
+            <a href="/search">
+                <span class="material-symbols-outlined">quick_reference_all</span>
+                <p>전체기사</p>
+            </a>
+            <a href="/my_bookmarks">
+                <span class="material-icons">favorite</span>
+                <p>즐겨찾기</p>
+            </a>
+            <!-- Flask 예시 -->
+            {% if session.logged_in %}
+            <a href="/logout">
+                <span class="material-icons">logout</span>
+                <p>로그아웃</p>
+            </a>
+            {% else %}
+            <a href="/login">
+                <span class="material-icons">person</span>
+                <p>로그인</p>
+            </a>
+            {% endif %}
+
+        </div>
+        <script src="{{ url_for('static', filename='js/suggestions.js') }}"></script>
+
+    </body>
+
+    <script>
+        function toggleNotifications() {
+            const box = document.getElementById('notification-list');
+            box.classList.toggle('hidden');
+        }
+    </script>
+        
+            
+      
+</html>
+ 
+
+
+
+
+
