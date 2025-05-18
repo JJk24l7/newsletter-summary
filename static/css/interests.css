@@ -1,0 +1,121 @@
+@import "./global.css";
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eaf6fa;
+}
+
+/* 가로로 배치되는 두 섹션 */
+.container {
+    display: flex;
+    gap: 2rem;
+    width: 90%;
+    max-width: 1000px;
+    padding: 2rem;
+    background-color: transparent;
+}
+
+/* 왼쪽 폼 */
+.form-section {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    color: #333;
+}
+
+.form-section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: #222;
+}
+
+.form-section label {
+    font-weight: 600;
+    display: block;
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.form-section input[type="text"],
+.form-section select {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+.form-section button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4f92d4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 1.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+    background-color: #3c7fc4;
+}
+
+/* 오른쪽 관심사 목록 */
+.interest-section {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    color: #333;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.interest-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.interest-section ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.8rem;
+}
+
+.interest-section li {
+    margin-bottom: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.interest-section li form button {
+    background-color: transparent;
+    color: #ff4d4d;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.interest-section li form button:hover {
+    text-decoration: underline;
+}
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관심키워드,카테고리설정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/interests.css') }}" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-section">
+        <h2>관심 설정</h2>
+        <form method="POST">
+            <label for="keyword">관심 키워드</label>
+            <input type="text" name="keyword" placeholder="예: 인공지능, 경제, 삼성"><br><br>
+
+            <label for="category">관심 카테고리</label>
+            <select name="category">
+                <option value="">선택 안함</option>
+                <option value="스포츠">스포츠</option>
+                <option value="연예">연예</option>
+                <option value="경제">경제</option>
+                <option value="IT">IT</option>
+                <option value="사회">사회</option>
+                <option value="생활문화">생활문화</option>
+            </select><br><br>
+
+            <button type="submit">등록</button>
+        </form>
+    </div>
+
+    <!-- 현재 등록된 관심사 -->
+        <div class="interest-section">
+            <h3>나의 관심사</h3>
+            <ul>
+                {% for interest in interests %}
+                    <li>
+                    {{ interest.keyword or "" }} {{ interest.category or "" }}
+                    <form action="{{ url_for('delete_interest', interest_id=interest.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">삭제</button>
+                    </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="navigation-bar">
+        <a href="/"><span class="material-symbols-outlined">home</span><p>홈</p></a>
+        <a href="/my_bookmarks"><span class="material-icons">favorite</span><p>즐겨찾기</p></a>
+        {% if session.logged_in %}
+        <a href="/logout"><span class="material-icons">logout</span><p>로그아웃</p></a>
+        {% else %}
+        <a href="/login"><span class="material-icons">person</span><p>로그인</p></a>
+        {% endif %}
+    </div>
+
+</body>
+</html>

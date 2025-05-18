@@ -4,24 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>뉴스 검색</title>
+    <title>전체 뉴스</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}" />
 </head>
 <body>
-    <!-- 검색 바 -->
-    <form class="find-search-bar-form" action="/search" method="get">
+    <!-- 🔔 알림 + ➕ 설정 버튼 -->
+    <div class="icon-wrapper">
+        <div class="notification-bar">
+            <span class="material-icons notification-icon" onclick="toggleNotifications()">notifications</span>
+            <a href="/interests" class="plus-icon-link">
+                <span class="material-icons plus-icon">add_circle</span>
+            </a>
+            <div id="notification-list" class="notification-box hidden">
+                {% if notifications %}
+                    {% for news in notifications %}
+                        <p><a href="{{ news.url }}" target="_blank">{{ news.title }}</a></p>
+                    {% endfor %}
+                {% else %}
+                    <p>🔔 최근 알림 없음</p>
+                {% endif %}
+            </div>
+        </div>
+    </div> 
+    <!-- 검색창 -->
+    <form id="search-form" class="find-search-bar-form" action="/search" method="get">
         <div class="search-container">
-            <input type="text" id="search-input" name="keyword" class="find-search-bar"
-                   placeholder="검색어 입력" value="{{ keyword or '' }}" />
+            <input type="text" id="search-input" name="keyword" class="find-search-bar" placeholder="검색어 입력" autocomplete="off" />
             <ul id="suggestion-box" class="suggestions"></ul>                
             <span class="material-icons-outlined">search</span>
         </div>
-        {% if selected_category %}
-            <input type="hidden" name="category" value="{{ selected_category }}">
-        {% endif %}
     </form>
 
-    
     <!-- 카테고리 바 -->
     <div class="category-bar">
         <div class="category-buttons">
@@ -34,8 +47,6 @@
             {% endfor %}
         </div>
     </div>
-
-
 
     <!-- 뉴스 항목 표시 -->
     <div class="articles-container">
@@ -50,11 +61,7 @@
                     <a href="{{ news.url }}" target="_blank">원문 기사 보기</a>
                     <form action="{{ url_for('bookmark', news_id=news.id) }}" method="post" style="display:inline;">
                         <button type="submit" class="bookmark-button" style="background: none; border: none; font-size: 1.5rem;">
-                            {% if news.id in bookmarked_news_ids %}
-                                ❤️
-                            {% else %}
-                                🤍
-                            {% endif %}
+                            {% if news.id in bookmarked_news_ids %}❤️{% else %}🤍{% endif %}
                         </button>
                     </form>
                 </div>
@@ -64,40 +71,39 @@
         {% endif %}
     </div>
 
-    
     <!-- 내비게이션 바 -->
     <div class="navigation-bar">
-        <a href="/">
-            <span class="material-symbols-outlined">home</span>
-            <p>홈</p>
-        </a>
-        <a href="/search">
-            <span class="material-symbols-outlined">quick_reference_all</span>
-            <p>전체기사</p>
-        </a>
-        <a href="/my_bookmarks">
-            <span class="material-icons">favorite</span>
-            <p>즐겨찾기</p>
-        </a>
-        <!-- Flask 예시 -->
+        <a href="/"><span class="material-symbols-outlined">home</span><p>홈</p></a>
+        <a href="/my_bookmarks"><span class="material-icons">favorite</span><p>즐겨찾기</p></a>
         {% if session.logged_in %}
-        <a href="/logout">
-            <span class="material-icons">logout</span>
-            <p>로그아웃</p>
-        </a>
+        <a href="/logout"><span class="material-icons">logout</span><p>로그아웃</p></a>
         {% else %}
-        <a href="/login">
-            <span class="material-icons">person</span>
-            <p>로그인</p>
-        </a>
+        <a href="/login"><span class="material-icons">person</span><p>로그인</p></a>
         {% endif %}
-
     </div>
 
-
     <script src="{{ url_for('static', filename='js/suggestions.js') }}"></script>
+    <script>
+        function toggleNotifications() {
+            const box = document.getElementById('notification-list');
+            box.classList.toggle('hidden');
+        }
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitSearch();
+            }
+        }
+        function submitSearch() {
+            const query = document.getElementById('searchInput').value;
+            if (query.trim()) {
+                window.location.href = `/search?q=${encodeURIComponent(query)}`;
+            }
+        }
+    </script>
 </body>
 </html>
+
 
 
 

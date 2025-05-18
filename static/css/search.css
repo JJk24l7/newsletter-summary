@@ -1,8 +1,6 @@
 @import "./global.css";
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -109,5 +107,66 @@ to {
 #suggestion-box li:hover,
 #suggestion-box li.highlighted {
     background-color: #f0f0f0;
+}
+
+.notification-bar {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+
+.notification-icon {
+  font-size: 24px;
+  color: #FECA02;  /* ✅ 변경: 종 아이콘 색을 노란색으로 */
+  cursor: pointer;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-box {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 10px;
+  min-width: 150px;
+  z-index: 100;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.plus-icon-link {
+    margin-left: 8px;
+    text-decoration: none;
+}
+
+.plus-icon {
+    font-size: 22px;
+    color:#98C9EA;
+    cursor: pointer;
+
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 아이콘 사이 간격 */
+}
+
+.notification-icon,
+.plus-icon {
+    font-size: 26px;
+    vertical-align: middle;
+    line-height: 1;
 }
 

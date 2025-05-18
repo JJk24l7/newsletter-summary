@@ -36,3 +36,14 @@
   color: black;
   pointer-events: none;
 }
+
+.search-icon-button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
