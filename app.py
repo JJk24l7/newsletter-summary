@@ -29,7 +29,11 @@ def create_notifications_for_news(news_item):
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'your_secret_key'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://newsletter_db_75c4_user:NMuHYBrYNgdLWHW5io84VlC4mPNGf1YU@dpg-d0knlnbuibrs739mae3g-a.oregon-postgres.render.com/newsletter_db_75c4'
+
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
