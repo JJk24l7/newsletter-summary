@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #eaf6fa;
     max-width: 100vw;
     overflow-x: hidden;
@@ -123,6 +123,7 @@ body {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    align-items: stretch;
     padding: 1rem;
   }
 
@@ -131,6 +132,7 @@ body {
     width: 100%;
     padding: 1.5rem;
     font-size: 0.9rem;
+    margin-bottom: 1rem;
   }
 
   .form-section h2,

@@ -172,3 +172,28 @@ to {
     line-height: 1;
 }
 
+/* ✅ 모바일 화면 대응용 (가로폭 768px 이하) */
+@media (max-width: 768px) {
+  .articles-container {
+    grid-template-columns: 1fr;  /* 한 줄에 하나의 카드 */
+    padding: 10px;
+  }
+
+  .article-card {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .article-card h3 {
+    font-size: 17px;
+  }
+
+  .article-card p,
+  .article-card a {
+    font-size: 14px;
+  }
+
+  .wordcloud_images {
+    width: 100px;  /* 모바일에서는 워드클라우드 이미지 더 작게 */
+  }
+}
