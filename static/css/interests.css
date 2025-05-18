@@ -120,4 +120,37 @@ body {
     text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .form-section,
+  .interest-section {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .form-section h2,
+  .interest-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .form-section input[type="text"],
+  .form-section select {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .form-section button {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+
+  .interest-section {
+    max-height: none;
+  }
+}
 

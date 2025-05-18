@@ -156,3 +156,28 @@ body {
 .bookmark-button.hearted {
     color: red;
 }
+
+@media (max-width: 768px) {
+  .articles-container {
+    grid-template-columns: 1fr;  /* 한 줄에 하나 */
+    padding: 10px;
+  }
+
+  .article-card {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .article-card h3 {
+    font-size: 1rem;
+  }
+
+  .article-card p,
+  .article-card a {
+    font-size: 0.9rem;
+  }
+
+  .wordcloud_images {
+    width: 100px;
+  }
+}
