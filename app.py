@@ -32,7 +32,18 @@ def create_app():
 
     import os
     from dotenv import load_dotenv
-    load_dotenv()
+    if os.environ.get("RENDER") != "true":
+        load_dotenv()
+
+    def normalize_db_url(raw: str) -> str:
+        url = raw or ""
+        if url.startswith("postgresql://"):
+            url = url.replace("postgresql://", "postgresql+psycopg2://", 1)
+        if "sslmode=" not in url:
+            url += ("&" if "?" in url else "?") + "sslmode=require"
+        return url
+
+    raw_url = os.getenv("DATABASE_URL")
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
