@@ -54,6 +54,10 @@ def create_app():
                                                  is_read=False).all()
             return dict(notifications=[n.news for n in notis])
         return dict(notifications=[])
+    
+    @app.get("/healthz")
+    def healthz():
+        return "ok", 200
 
     # ✅ '/' 경로를 search.html과 동일하게 동작하도록 설정
     @app.route('/')
