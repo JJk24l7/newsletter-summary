@@ -53,6 +53,11 @@ def create_app():
         "connect_args": {"sslmode": "require"},
     }
 
+    masked = re.sub(r":[^@]+@", ":***@", url)
+    print(f"[BOOT] USING DB URL: {masked}")
+    print(f"[BOOT] PGSSLMODE={os.environ.get('PGSSLMODE')} RENDER={os.environ.get('RENDER')}")
+
+
     db.init_app(app)
     Migrate(app, db)
 
@@ -72,6 +77,15 @@ def create_app():
             return dict(notifications=[n.news for n in notis])
         return dict(notifications=[])
     
+    @app.get("/dbping")
+    def dbping():
+        try:
+            with db.engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            return "db ok", 200
+        except Exception as e:
+            return f"db error: {e}", 500
+
     @app.get("/healthz")
     def healthz():
         return "ok", 200
