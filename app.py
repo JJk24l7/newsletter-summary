@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import or_
+from sqlalchemy import or_,re
+from sqlalchemy import text
 
 from models import db, User, News, Interest, Notification
 
@@ -44,14 +45,16 @@ def create_app():
         return url
 
     raw_url = os.getenv("DATABASE_URL")
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    url = normalize_db_url(raw_url)
 
-    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
         "pool_pre_ping": True,
         "pool_recycle": 300,
         "connect_args": {"sslmode": "require"},
     }
+    
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     masked = re.sub(r":[^@]+@", ":***@", url)
     print(f"[BOOT] USING DB URL: {masked}")
