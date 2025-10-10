@@ -4,7 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import or_,re
+from sqlalchemy import or_
+import os
+import re
+from dotenv import load_doten
 from sqlalchemy import text
 
 from models import db, User, News, Interest, Notification
