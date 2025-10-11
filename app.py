@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import or_
 import os
 import re
-from dotenv import load_doten
+from dotenv import load_dotenv
 from sqlalchemy import text
 
 from models import db, User, News, Interest, Notification
