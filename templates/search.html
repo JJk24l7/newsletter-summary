@@ -58,7 +58,7 @@
                     <p><strong>출처:</strong> {{ news.company }}</p>
                     <p><strong>키워드:</strong> {{ news.keyword }}</p>
                     <img class="wordcloud_images" src="{{ url_for('static', filename='wordcloud_images/' + news.wordcloud_image) }}" alt="Word Cloud">
-                    <a href="{{ news.url }}" target="_blank">원문 기사 보기</a>
+                    <a href="{{ news.url }}" target="_blank" rel="noopener noreferrer">원문 기사 보기</a>
                     <form action="{{ url_for('bookmark', news_id=news.id) }}" method="post" style="display:inline;">
                         <button type="submit" class="bookmark-button" style="background: none; border: none; font-size: 1.5rem;">
                             {% if news.id in bookmarked_news_ids %}❤️{% else %}🤍{% endif %}

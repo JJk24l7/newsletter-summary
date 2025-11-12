@@ -18,7 +18,7 @@
                     <p><strong>출처:</strong> {{ news.company }}</p>
                     <p><strong>키워드:</strong> {{ news.keyword }}</p>
                     <img class="wordcloud_images" src="{{ url_for('static', filename='wordcloud_images/' + news.wordcloud_image) }}" alt="Word Cloud">
-                    <a href="{{ news.url }}" target="_blank">원문 기사 보기</a>
+                    <a href="{{ news.url }}" target="_blank" rel="noopener noreferrer">원문 기사 보기</a>
 
                     <!-- 북마크 버튼 -->
                     <form action="{{ url_for('bookmark', news_id=news.id) }}" method="post" style="display:inline;">
